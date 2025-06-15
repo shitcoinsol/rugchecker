@@ -1,184 +1,271 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>snif.fun</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    #result-1 {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #15151B;
-    font-family: 'Inter', sans-serif;
-    color: white;
-    width: 100%;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+    .token-flex-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: flex-start;
+      text-align: left;
+    }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.logo-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-}
-
-.logo-img {
-    width: 60px;
-    height: auto;
-}
-
-.logo {
-    cursor: pointer;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.sub-links {
-    color: white;
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 4px;
-}
-
-.search-box {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.search-box input {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    background-color: #93C5FD;
-    color: #15151B;
-    font-size: 1rem;
-    width: 260px;
-    font-weight: 500;
-}
-
-.search-box input::placeholder {
-    color: #4B5563;
-    font-weight: 400;
-}
-
-.search-box button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    background-color: #93C5FD;
-    color: #15151B;
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: lowercase;
-    cursor: pointer;
-}
-
-.results {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 920px;
-}
-
-.summary-box {
-    background-color: #1c1c1c;
-    color: white;
-    padding: 30px;
-    border-radius: 16px;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    width: 100%;
-    max-width: 400px;
-    display: block;
-}
-
-.details-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin-top: 20px;
-    width: 100%;
-    padding-bottom: 100px; /* ✅ 맨 아래 공간 확보 */
-}
-
-.result-box {
-    width: 1300px;
-    height: 700px;
-    background-color: #1c1c1c;
-    color: white;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.2s ease-in-out;
-}
-
-.result-box:hover {
-    transform: scale(1.02);
-}
-
-.hidden {
-    display: none;
-}
-
-#hot-tokens {
-    margin-top: 40px;
-    font-size: 15px;
-    line-height: 1.8;
-    text-align: center;
-    color: #ffffffcc;
-}
-
-#hot-tokens h3 {
-    margin-bottom: 12px;
-    font-size: 18px;
-    color: #ffffff;
-}
-
-#hot-tokens button {
-    margin-left: 8px;
-    background-color: #93C5FD;
-    color: #15151B;
-    border: none;
-    border-radius: 4px;
-    font-size: 12px;
-    padding: 2px 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s ease;
-}
-
-#hot-tokens button:hover {
-    background-color: #bfdbfe;
-}
-
-#backToTopBtn {
+    .token-logo-large {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      background-color: #2a2a2a;
+      object-fit: contain;
+    }
+  
+#scrollTopBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 999;
   background-color: #444;
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  padding: 10px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  z-index: 999;
+  display: none;
+  font-size: 14px;
 }
 
-@media (max-width: 768px) {
-  #backToTopBtn {
-    display: none;
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo-wrapper">
+    <img src="assets/logo.png" alt="snif logo" class="logo-img" />
+    <div class="sub-links">
+      <a href="https://believe.app" target="_blank" style="color: white; text-decoration: none; margin-right: 10px;">[buy $snif]</a>
+      <a href="https://x.com/snifdotfun" target="_blank" style="color: white; text-decoration: none;">[x]</a>
+    </div>
+    <h1 class="logo" onclick="resetPage()">snif.fun</h1>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="search for token" id="tokenInput" />
+    <button onclick="showResults()">search</button>
+  </div>
+
+  <div id="loadingText" style="display: none; text-align: center; margin-top: 30px;">
+    <span style="color: white; font-size: 18px;">loading.</span>
+  </div>
+
+  <div id="wrongImgContainer" style="display: none; text-align: center; margin-top: 30px;">
+    <span style="color: white; font-size: 18px;">something is wrong.</span>
+  </div>
+
+  <div class="results hidden" id="results">
+    <div class="summary-box" id="result-1"><!-- 요약 정보 --></div>
+    <div class="details-grid">
+      <div class="result-box" id="result-2">
+  <div id="price-chart-widget-container" style="width: 100%; height: 400px;"></div><!-- 상세 2번 --></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let loadingInterval = null;
+
+  function startLoadingAnimation() {
+    const loadingEl = document.getElementById("loadingText").querySelector("span");
+    let dotCount = 1;
+    loadingInterval = setInterval(() => {
+      loadingEl.textContent = "loading" + ".".repeat(dotCount);
+      dotCount = dotCount >= 3 ? 1 : dotCount + 1;
+    }, 400);
   }
-}
+
+  function stopLoadingAnimation() {
+    clearInterval(loadingInterval);
+    document.getElementById("loadingText").querySelector("span").textContent = "loading.";
+  }
+</script>
+
+<script>
+  async function showResults() {
+  // Scroll button appears after result
+  const input = document.getElementById("tokenInput").value;
+    const results = document.getElementById("results");
+    const wrongImgContainer = document.getElementById("wrongImgContainer");
+    const loadingText = document.getElementById("loadingText");
+
+    loadingText.style.display = "block";
+    startLoadingAnimation();
+    wrongImgContainer.style.display = "none";
+    results.classList.add("hidden");
+    loadPriceChart(input);
+
+    const solscanUrl = `https://pro-api.solscan.io/v2.0/token/meta?address=${input}`;
+    const solscanHeaders = {
+      method: "GET",
+      headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkQXQiOjE3NDk4NjAwMjIwMDUsImVtYWlsIjoid2F4amluaG8wMkBnbWFpbC5jb20iLCJhY3Rpb24iOiJ0b2tlbi1hcGkiLCJhcGlWZXJzaW9uIjoidjIiLCJpYXQiOjE3NDk4NjAwMjJ9.I1laMt2a0wIiMeQ0JFEDDWWqvwLQvnSjcS0mdvy-vM0"
+      }
+    };
+
+    try {
+      const solscanRes = await fetch(solscanUrl, solscanHeaders);
+      const solscanData = await solscanRes.json();
+
+      if (solscanData.success && solscanData.data && solscanData.data.address) {
+        const tokenName = solscanData.data.name || "-";
+        const tokenSymbol = solscanData.data.symbol || "-";
+        const marketCap = solscanData.data.market_cap || "-";
+
+        const moralisPriceRes = await fetch(`https://solana-gateway.moralis.io/token/mainnet/${input}/price`, {
+          method: "GET",
+          headers: {
+            "accept": "application/json",
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjkyMzBkNGU3LWUyNjEtNGNiYi1hYzgzLTY4MDZmNDg5YzRhOSIsIm9yZ0lkIjoiNDUzNzM2IiwidXNlcklkIjoiNDY2ODMzIiwidHlwZUlkIjoiODVkOTcxZDMtODgzOS00NmYxLWJiMGEtM2IyY2Y5ZmE4NTU2IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDk4MDU3MTcsImV4cCI6NDkwNTU2NTcxN30.nbLVfn0ocROspwVeWXIOtw-d6Gm42Bnshujhlp3JrMI"
+          }
+        });
+        const moralisPriceData = await moralisPriceRes.json();
+        const priceUSD = moralisPriceData.usdPrice?.toFixed(6) || "-";
+
+        const moralisMetaRes = await fetch(`https://solana-gateway.moralis.io/token/mainnet/${input}/metadata`, {
+          method: "GET",
+          headers: {
+            "accept": "application/json",
+            "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjkyMzBkNGU3LWUyNjEtNGNiYi1hYzgzLTY4MDZmNDg5YzRhOSIsIm9yZ0lkIjoiNDUzNzM2IiwidXNlcklkIjoiNDY2ODMzIiwidHlwZUlkIjoiODVkOTcxZDMtODgzOS00NmYxLWJiMGEtM2IyY2Y5ZmE4NTU2IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3NDk4MDU3MTcsImV4cCI6NDkwNTU2NTcxN30.nbLVfn0ocROspwVeWXIOtw-d6Gm42Bnshujhlp3JrMI"
+          }
+        });
+        const moralisMetaData = await moralisMetaRes.json();
+        const tokenLogo = moralisMetaData.logo || "default.png";
+
+        loadingText.style.display = "none";
+        stopLoadingAnimation();
+
+        results.classList.remove("hidden");
+        wrongImgContainer.style.display = "none";
+
+        document.getElementById("result-1").innerHTML = `
+          <div class="token-flex-wrapper">
+            <img src="${tokenLogo}" alt="Token Logo" class="token-logo-large" />
+            <div class="token-meta">
+              <div><strong>Name:</strong> ${tokenName}</div>
+              <div><strong>Symbol:</strong> ${tokenSymbol}</div>
+              <div><strong>Price (USD):</strong> $${priceUSD}</div>
+              <div><strong>Market Cap:</strong> $${formatNumber(marketCap)}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        loadingText.style.display = "none";
+        stopLoadingAnimation();
+        results.classList.add("hidden");
+    loadPriceChart(input);
+        wrongImgContainer.style.display = "block";
+      }
+    } catch (err) {
+      loadingText.style.display = "none";
+      stopLoadingAnimation();
+      results.classList.add("hidden");
+    loadPriceChart(input);
+      wrongImgContainer.style.display = "block";
+    }
+  }
+
+  function resetPage() {
+    location.reload();
+  }
+
+  function formatNumber(num) {
+    if (!num || isNaN(num)) return "-";
+    num = Math.floor(Number(num));
+    if (num >= 1e9) return (num / 1e9).toFixed(2) + "B";
+    if (num >= 1e6) return (num / 1e6).toFixed(2) + "M";
+    if (num >= 1e3) return (num / 1e3).toFixed(2) + "K";
+    return num.toString();
+  }
+
+  document.getElementById("tokenInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      showResults();
+    }
+  });
+</script>
+
+<script>
+  function loadPriceChart(ca) {
+    const containerId = 'price-chart-widget-container';
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = ''; // Clear old chart if exists
+
+    if (typeof window.createMyWidget === 'function') {
+      window.createMyWidget(containerId, {
+        autoSize: true,
+        chainId: 'solana',
+        tokenAddress: ca,
+        showHoldersChart: true,
+        defaultInterval: '1D',
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone ?? 'Etc/UTC',
+        theme: 'moralis',
+        locale: 'en',
+        backgroundColor: '#071321',
+        gridColor: '#0d2035',
+        textColor: '#68738D',
+        candleUpColor: '#4CE666',
+        candleDownColor: '#E64C4C',
+        hideLeftToolbar: false,
+        hideTopToolbar: false,
+        hideBottomToolbar: false
+      });
+    } else {
+      var script = document.createElement('script');
+      script.id = 'moralis-chart-widget';
+      script.src = 'https://moralis.com/static/embed/chart.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      script.onload = () => loadPriceChart(ca);
+      document.body.appendChild(script);
+    }
+  }
+</script>
+
+
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      if (!scrollTopBtn.classList.contains('show')) scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  scrollTopBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function showScrollBtnAfterSearch() {
+    scrollTopBtn.style.display = "none";
+    setTimeout(() => {
+      scrollTopBtn.style.display = "block";
+    }, 500);
+  }
+</script>
+
+
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="backToTopBtn">⬆</button>
+</body>
+
+</html>
