@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>snif.fun</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
@@ -266,6 +266,20 @@
 
 
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="backToTopBtn">⬆</button>
+
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  function toggleScrollButton() {
+    const results = document.getElementById("results");
+    const isVisible = results && !results.classList.contains("hidden");
+    scrollTopBtn.style.display = isVisible ? "block" : "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", toggleScrollButton);
+  document.addEventListener("click", toggleScrollButton);
+</script>
+
 </body>
 
 </html>
