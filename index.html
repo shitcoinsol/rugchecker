@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>snif.fun</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>snif.fun</title>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
     #result-1 {
       text-align: center;
       font-size: 16px;
@@ -47,37 +48,32 @@
 </head>
 <body>
 <div class="container">
-  <div class="logo-wrapper">
-    <img src="assets/logo.png" alt="snif logo" class="logo-img" />
-    <div class="sub-links">
-      <a href="https://believe.app" target="_blank" style="color: white; text-decoration: none; margin-right: 10px;">[buy $snif]</a>
-      <a href="https://x.com/snifdotfun" target="_blank" style="color: white; text-decoration: none;">[x]</a>
-    </div>
-    <h1 class="logo" onclick="resetPage()">snif.fun</h1>
-  </div>
-
-  <div class="search-box">
-    <input type="text" placeholder="search for token" id="tokenInput" />
-    <button onclick="showResults()">search</button>
-  </div>
-
-  <div id="loadingText" style="display: none; text-align: center; margin-top: 30px;">
-    <span style="color: white; font-size: 18px;">loading.</span>
-  </div>
-
-  <div id="wrongImgContainer" style="display: none; text-align: center; margin-top: 30px;">
-    <span style="color: white; font-size: 18px;">something is wrong.</span>
-  </div>
-
-  <div class="results hidden" id="results">
-    <div class="summary-box" id="result-1"><!-- 요약 정보 --></div>
-    <div class="details-grid">
-      <div class="result-box" id="result-2">
-  <div id="price-chart-widget-container" style="width: 100%; height: 400px;"></div><!-- 상세 2번 --></div>
-    </div>
-  </div>
+<div class="logo-wrapper">
+<img alt="snif logo" class="logo-img" src="assets/logo.png"/>
+<div class="sub-links">
+<a href="https://believe.app" style="color: white; text-decoration: none; margin-right: 10px;" target="_blank">[buy $snif]</a>
+<a href="https://x.com/snifdotfun" style="color: white; text-decoration: none;" target="_blank">[x]</a>
 </div>
-
+<h1 class="logo" onclick="resetPage()">snif.fun</h1>
+</div>
+<div class="search-box">
+<input id="tokenInput" placeholder="search for token" type="text"/>
+<button onclick="showResults()">search</button>
+</div>
+<div id="loadingText" style="display: none; text-align: center; margin-top: 30px;">
+<span style="color: white; font-size: 18px;">loading.</span>
+</div>
+<div id="wrongImgContainer" style="display: none; text-align: center; margin-top: 30px;">
+<span style="color: white; font-size: 18px;">something is wrong.</span>
+</div>
+<div class="results hidden" id="results">
+<div class="summary-box" id="result-1"><!-- 요약 정보 --></div>
+<div class="details-grid">
+<div class="result-box" id="result-2">
+<div id="price-chart-widget-container" style="width: 100%; height: 400px;"></div><!-- 상세 2번 --></div>
+</div>
+</div>
+</div>
 <script>
   let loadingInterval = null;
 
@@ -95,7 +91,6 @@
     document.getElementById("loadingText").querySelector("span").textContent = "loading.";
   }
 </script>
-
 <script>
   async function showResults() {
   // Scroll button appears after result
@@ -199,7 +194,6 @@
     }
   });
 </script>
-
 <script>
   function loadPriceChart(ca) {
     const containerId = 'price-chart-widget-container';
@@ -238,9 +232,6 @@
     }
   }
 </script>
-
-
-
 <script>
   const scrollTopBtn = document.getElementById("scrollTopBtn");
 
@@ -263,10 +254,7 @@
     }, 500);
   }
 </script>
-
-
-  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="backToTopBtn">⬆</button>
-
+<button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">⬆</button>
 <script>
   const scrollTopBtn = document.getElementById("scrollTopBtn");
 
@@ -279,7 +267,5 @@
   document.addEventListener("DOMContentLoaded", toggleScrollButton);
   document.addEventListener("click", toggleScrollButton);
 </script>
-
 </body>
-
 </html>
