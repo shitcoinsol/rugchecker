@@ -91,6 +91,11 @@ html, body {
 }
 
 .summary-box {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
     background-color: #1c1c1c;
     color: white;
     padding: 30px;
@@ -114,7 +119,7 @@ html, body {
 
 .result-box {
     width: 1300px;
-    height: 700px;
+    height: 1000px;
     background-color: #1c1c1c;
     color: white;
     padding: 30px;
@@ -295,4 +300,88 @@ html, body {
 
 #price-chart-widget-container {
   min-height: 300px;
+}
+
+
+/* Mobile First Responsive Enhancements */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.search-box input[type="text"] {
+  font-size: 1rem;
+  padding: 10px;
+  width: 70%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.search-box button {
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  height: 42px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.result-box, .summary-box {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+}
+
+.details-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.details-grid .result-box {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 600px) {
+  .details-grid .result-box {
+    flex: 1 1 45%;
+  }
+}
+
+@media (min-width: 900px) {
+  .details-grid .result-box {
+    flex: 1 1 30%;
+  }
+}
+
+
+/* Center align the first result box */
+#result-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
 }
